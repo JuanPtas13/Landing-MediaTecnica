@@ -1,9 +1,9 @@
-# Landing de Media Técnica
+# Kronos Gate
 
-Página informativa independiente del frontend y backend de Media Técnica. Está
-construida con HTML, CSS y JavaScript nativos y Vite como servidor de desarrollo
-y herramienta de compilación; no reutiliza archivos internos de los proyectos
-existentes ni se conecta al backend.
+Landing informativa de Kronos Gate, la aplicación de control de asistencia y
+gestión escolar. Está construida con HTML, CSS y JavaScript nativos y Vite como
+servidor de desarrollo y herramienta de compilación; no reutiliza archivos
+internos del frontend ni del backend existente ni se conecta al backend.
 
 ## Requisitos
 
