@@ -63,9 +63,21 @@ npm run build
 
 No se incluye ningún endpoint de backend ni credenciales en esta landing.
 
+## Formulario de contacto
+
+El formulario envía nombre, institución, correo, teléfono opcional, motivo y
+mensaje a `juanraze.13@gmail.com` mediante el servicio externo FormSubmit. Se
+requiere aceptar el aviso antes de enviar; los campos obligatorios se validan
+en el navegador, y se bloquea el botón mientras la solicitud está en proceso.
+El primer envío puede requerir confirmar la dirección del destinatario desde el
+correo de activación de FormSubmit. Hasta completar esa activación, el proveedor
+puede rechazar los envíos. Los datos son procesados por ese servicio para
+entregar el correo.
+
 ## Contenido
 
 - Presentación del sistema y vista ilustrativa del panel, sin datos inventados.
 - Módulos respaldados por el proyecto para administración, docentes y vigilancia.
 - Flujo de organización, registro de ingreso y consulta de asistencia.
+- Formulario de contacto conectado con el correo de Kronos Gate.
 - Enlaces de acceso centralizados mediante `VITE_APP_URL`.

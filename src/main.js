@@ -24,6 +24,51 @@ navigation.querySelectorAll('a').forEach((link) => {
   });
 });
 
+const contactForm = document.querySelector('#contact-form');
+const contactResponse = document.querySelector('#contact-response');
+const contactSubmit = contactForm.querySelector('button[type="submit"]');
+const contactSubmitLabel = contactForm.querySelector('.submit-label');
+let contactSubmissionInProgress = false;
+
+contactForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  if (contactSubmissionInProgress) return;
+  contactSubmissionInProgress = true;
+  contactSubmit.disabled = true;
+  contactSubmitLabel.textContent = 'Enviando...';
+  contactForm.setAttribute('aria-busy', 'true');
+  contactResponse.className = 'contact-response is-pending';
+  contactResponse.textContent = 'Estamos enviando tu solicitud.';
+
+  try {
+    const formData = new URLSearchParams(new FormData(contactForm));
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: formData,
+    });
+    const result = await response.json();
+
+    if (!response.ok || !result.success || result.success === 'false') {
+      throw new Error(result.message || 'El servicio de correo no aceptó la solicitud.');
+    }
+
+    contactForm.reset();
+    contactResponse.className = 'contact-response is-success';
+    contactResponse.textContent = '¡Solicitud enviada! Nos pondremos en contacto contigo pronto.';
+  } catch (error) {
+    console.error('No se pudo enviar el formulario de contacto:', error);
+    contactResponse.className = 'contact-response is-error';
+    contactResponse.textContent = 'No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos a juanraze.13@gmail.com.';
+  } finally {
+    contactSubmissionInProgress = false;
+    contactSubmit.disabled = false;
+    contactSubmitLabel.textContent = 'Enviar solicitud';
+    contactForm.removeAttribute('aria-busy');
+  }
+});
+
 const revealItems = document.querySelectorAll('.role-card, .steps li, .closing-card');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
