@@ -1,0 +1,14 @@
+{
+  "name": "media-tecnica-landing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 4174 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4175 --strictPort"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5"
+  }
+}
